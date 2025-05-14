@@ -2,6 +2,11 @@ export default function Lab1() {
     return (
         <div id="wd-lab1">
             <h2>Lab 1</h2>
+            <h3>Scott Brinkley</h3>
+            <h3>Section 04</h3>
+            <h4>
+                <a href="https://github.com/scomitchell/kambaz-react-web-app" id = "wd-github-link" target="_blank">Github repo</a>
+            </h4>
             <h3>HTML Examples</h3>
             <div id="wd-h-tag">
                 <h4>Heading Tags</h4>
