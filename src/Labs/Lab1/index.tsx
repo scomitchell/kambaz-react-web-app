@@ -5,10 +5,11 @@ export default function Lab1() {
             <h3>
                 Scott Brinkley <br />
                 Section: 04
+                <h4>
+                    <a href="https://golden-llama-74719b.netlify.app/#/Labs/Lab1" id="wd-deploy-link" target="_blank">Deployed Project</a>
+                    <a href="https://github.com/scomitchell/kambaz-react-web-app" id="wd-github-link" target="_blank">Github repo</a>
+                </h4>
             </h3>
-            <h4>
-                <a href="https://github.com/scomitchell/kambaz-react-web-app" id = "wd-github-link" target="_blank">Github repo</a>
-            </h4>
             <h3>HTML Examples</h3>
             <div id="wd-h-tag">
                 <h4>Heading Tags</h4>
