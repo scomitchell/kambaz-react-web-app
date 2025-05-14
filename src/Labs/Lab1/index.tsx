@@ -55,6 +55,7 @@ export default function Lab1() {
                     <li>Flip and cook the other side.</li>
                     <li>Serve and enjoy!</li>
                 </ol>
+                How to make peanut butter and jelly
                 <ol id="wd-your-favorite-recipe">
                     <li>Get two slices of bread</li>
                     <li>Spread peanut butter one slice of bread</li>
