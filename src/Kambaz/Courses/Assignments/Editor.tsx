@@ -100,7 +100,7 @@ export default function AssignmentEditor() {
             <hr />
             <table>
                 <tr>
-                    <td align="right">
+                    <td colSpan={3} align="right">
                         <button type="button"
                             id="wd-cancel">
                             Cancel
