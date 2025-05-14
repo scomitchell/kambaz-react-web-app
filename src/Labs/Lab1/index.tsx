@@ -103,7 +103,54 @@ export default function Lab1() {
                             <td>2/10/21</td>
                             <td>90</td>
                         </tr>
-                        <tr> ... </tr>
+                        <tr>
+                            <td>Q3</td>
+                            <td>SPAs</td>
+                            <td>05/26/2025</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>Q4</td>
+                            <td>Data</td>
+                            <td>05/28/2025</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>Q5</td>
+                            <td>State</td>
+                            <td>06/02/2025</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>Q6</td>
+                            <td>RESTful APIs</td>
+                            <td>06/09/2025</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>Q7</td>
+                            <td>HTTP server</td>
+                            <td>06/11/2025</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>Q8</td>
+                            <td>MongoDB</td>
+                            <td>06/16/2025</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>Q9</td>
+                            <td>Database</td>
+                            <td>06/18/2025</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>Q10</td>
+                            <td>Web APIs</td>
+                            <td>06/23/2025</td>
+                            <td>0</td>
+                        </tr>
                     </tbody>
                     <tfoot>
                         <tr>
