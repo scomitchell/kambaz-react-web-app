@@ -1,117 +1,107 @@
+import {FormLabel, FormGroup, FormControl, FormSelect, FormCheck, Button, ListGroup } from "react-bootstrap"
 export default function AssignmentEditor() {
     return (
         <div id="wd-assignments-editor">
-            <label htmlFor="wd-name">Assignment Name</label>
-            <input id="wd-name" value="A1 - ENV + HTML" /><br /><br />
-            <textarea id="wd-description">
-                The assignment is available online Submit a link to the landing page of
-            </textarea>
-            <br />
-            <table>
-                <tr>
-                    <td align="right" valign="top">
-                        <label htmlFor="wd-points">Points</label>
-                    </td>
-                    <td>
-                        <input id="wd-points" value={100} />
-                    </td>
-                </tr> <br />
-                <tr>
-                    <td align="right" valign="top">
-                        <label htmlFor="wd-group">Assignment Group</label>
-                    </td>
-                    <td>
-                        <select id ="wd-group">
-                            <option value="ASSIGNMENTS" selected> ASSIGNMENTS </option>
-                            <option value="QUIZZES"> QUIZZES </option>
-                            <option value="EXAMS"> EXAMS </option>
-                            <option value="PROJECT"> PROJECT </option>
-                        </select>
-                    </td>
-                </tr> <br />
-                <tr>
-                    <td align="right" valign="top">
-                        <label htmlFor="wd-display-grade-as">Display grade as</label>
-                    </td>
-                    <td>
-                        <select id="wd-display-grade-as">
-                            <option value="PERCENTAGE" selected>Percentage</option>
-                        </select>
-                    </td>
-                </tr> <br />
-                <tr>
-                    <td align="right" valign="top">
-                        <label htmlFor="wd-submission-type">Submission type</label>
-                    </td>
-                    <td>
-                        <div>
-                            <select id="wd-submission-type">
-                                <option value="Online" selected>Online</option>
-                            </select>
-                        </div> <br />
+            <FormGroup className="mb-3" controlId="wd-assignment-name">
+                <FormLabel>Assignment Name</FormLabel>
+                <FormControl type="text" value="A1" />
+            </FormGroup>
 
-                        <div>
-                            <label>Online Entry Options</label><br />
-                            <input type="checkbox" name="check-online-entry" id="wd-text-entry" />
-                            <label htmlFor="wd-text-entry">Text Entry</label> <br />
+            <FormGroup className="mb-3" controlId="wd-assignment-description">
+                <FormControl
+                    as="textarea"
+                    value="Description of the assignment goes here"
+                    style={{ height: '150px' }}
+                    className="text-start"/>
+            </FormGroup>
 
-                            <input type="checkbox" name="check-online-entry" id="wd-website-url" />
-                            <label htmlFor="wd-website-url">Website URL</label> <br />
+            <FormGroup className="row mb-3" controlId="wd-assignment-pts">
+                <FormLabel className="col-sm-3 col-form-label text-sm-end">Points</FormLabel>
+                <div className="col-sm-9">
+                    <FormControl className="flex-grow-1" type="text" value="100" />
+                </div>
+            </FormGroup>
 
-                            <input type="checkbox" name="check-online-entry" id="wd-media-recordings" />
-                            <label htmlFor="wd-media-recordings">Media Recordings</label> <br />
+            <FormGroup className="row mb-3" controlId="wd-assignment-group">
+                <FormLabel className="col-sm-3 col-form-label text-sm-end">Assignment Group</FormLabel>
+                <div className="col-sm-9">
+                    <FormSelect>
+                        <option selected>ASSIGNMENTS</option>
+                        <option>QUIZZES</option>
+                        <option>EXAMS</option>
+                        <option>PROJECT</option>
+                    </FormSelect>
+                </div>
+            </FormGroup>
 
-                            <input type="checkbox" name="check-online-entry" id="wd-student-annotation" />
-                            <label htmlFor="wd-student-annotation">Student Annotation</label> <br />
+            <FormGroup className="row mb-3" controlId="wd-display-grade-as">
+                <FormLabel className="col-sm-3 col-form-label text-sm-end">Display Grade as</FormLabel>
+                <div className="col-sm-9">
+                    <FormSelect>
+                        <option selected>PERCENTAGE</option>
+                    </FormSelect>
+                </div>
+            </FormGroup>
 
-                            <input type="checkbox" name="check-online-entry" id="wd-file-upload" />
-                            <label htmlFor="wd-file-upload">File Uploads</label> <br />
-                        </div> <br />
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right" valign="top">
-                        <label htmlFor="wd-assign">Assign</label>
-                    </td>
-                    <td>
-                        <div>
-                            <label htmlFor="wd-assign-to"> Assign to </label> <br />
-                            <input id="wd-assign-to-box" />
-                        </div> <br />
+            <FormGroup className="row mb-3" controlId="wd-submission-type">
+                <FormLabel className="col-sm-3 col-form-label text-sm-end">Submission Type</FormLabel>
+                <div className="col-sm-9 border border-1 p-3">
+                    <FormSelect className="mb-3 ms-2">
+                        <option selected>Online</option>
+                    </FormSelect>
+                    
+                    <FormGroup>
+                        <FormLabel className="ms-2 fw-bold">Online Entry Options</FormLabel>
+                        <FormCheck
+                            type="checkbox"
+                            id="wd-text-entry"
+                            label="Text entry"
+                            className="ms-3 mb-2" />
+                        <FormCheck
+                            type="checkbox"
+                            id="wd-website-url"
+                            label="Website URL"
+                            className="ms-3 mb-2" />
+                        <FormCheck
+                            type="checkbox"
+                            id="wd-media-recordings"
+                            label="Media Recording"
+                            className="ms-3 mb-2" />
+                        <FormCheck
+                            type="checkbox"
+                            id="wd-student-annotation"
+                            label="Student Annotation"
+                            className="ms-3 mb-2" />
+                        <FormCheck
+                            type="checkbox"
+                            id="wd-file-upload"
+                            label="File Upload"
+                            className="ms-3 mb-2" />
+                    </FormGroup>  
+                </div>
+            </FormGroup>
 
-                        <div>
-                            <label htmlFor="wd-due-date">Due</label> <br />
-                            <input type="date"
-                                value="2025-05-13"
-                                id="wd-due-date-field" />
-                        </div> <br />
+            <FormGroup className="row mb-3" controlId="wd-assign">
+                <FormLabel className="col-sm-3 col-form-label text-sm-end">Assign</FormLabel>
+                <div className="col-sm-9 border border-1 p-3">
+                    <FormLabel className="ms-2 fw-bold">Assign To</FormLabel>
 
-                        <tr>
-                            <td><label htmlFor="wd-available-from">Available</label></td>
-                            <td><label htmlFor="wd-available-until">Until</label></td>
-                        </tr>
-                        <tr>
-                            <td><input type="date" value="2025-05-13" id="wd-available-from" /></td>
-                            <td><input type="date" value="2025-05-13" id="wd-available-until" /></td>
-                        </tr>
-                    </td>
-                </tr> <br />
-            </table>
-            <hr />
-            <table>
-                <tr>
-                    <td colSpan={3} align="right">
-                        <button type="button"
-                            id="wd-cancel">
-                            Cancel
-                        </button>
-                        <button type="button"
-                            id="wd-save">
-                            Save
-                        </button>
-                    </td>
-                </tr>
-            </table>
+                    <FormControl className="mb-3" value="Everyone" />
+                    <FormLabel className="ms-2 fw-bold">Due</FormLabel>
+                    <FormControl className="mb-3" type="date" value="2025-05-20" />
+
+                    <div className="d-flex gap-3">
+                        <div id="wd-available-date">
+                            <FormLabel className="ms-2 mb-1">Available From</FormLabel>
+                            <FormControl className="mb-3" type="date" value="2025-05-13" />
+                        </div>
+                        <div id="wd-until-date">
+                            <FormLabel className="ms-2 mb-1">Until</FormLabel>
+                            <FormControl className="mb-3" type="date" />
+                        </div>
+                    </div>
+                </div>
+            </FormGroup>
         </div>
     );
 }
