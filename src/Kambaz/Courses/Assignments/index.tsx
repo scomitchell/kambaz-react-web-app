@@ -6,7 +6,7 @@ export default function Assignments() {
     return (
         <div id="wd-assignments" className="container-fluid">
             <div id="wd-assignments-top-bar"
-                className="d-flex justify-content-between align-items-center">
+                className="d-flex justify-content-between align-items-center mb-3">
                 <div>
                     <InputGroup>
                         <InputGroup.Text>
@@ -38,7 +38,11 @@ export default function Assignments() {
                     <ListGroup.Item className="wd-assignment p-0 mb-5 fs-5 border-gray">
                         <div className="wd-title p-3 ps-2 bg-secondary">
                             <BsGripVertical className="me-2 fs-3" /> Assignments
+                            <div className="float-end border border-1 border-black rounded-pill ps-2 pe-2">
+                                40% of Grade
+                            </div>
                         </div>
+
                         <ListGroup className="wd-assignments rounded-0">
                             <ListGroup.Item className="wd-lesson p-3 d-flex ps-1">
                                 <BsGripVertical className="me-2 fs-3" />
@@ -58,6 +62,7 @@ export default function Assignments() {
                                     </div>
                                 </div>
                             </ListGroup.Item>
+
                             <ListGroup.Item className="wd-lesson p-3 d-flex ps-1">
                                 <BsGripVertical className="me-2 fs-3" />
                                 <div>
@@ -75,6 +80,7 @@ export default function Assignments() {
                                     </div>
                                 </div>
                             </ListGroup.Item>
+
                             <ListGroup.Item className="wd-lesson p-3 d-flex ps-1">
                                 <BsGripVertical className="me-2 fs-3" />
                                 <div>
