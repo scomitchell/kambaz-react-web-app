@@ -44,7 +44,10 @@ export default function Assignments() {
                                 <BsGripVertical className="me-2 fs-3" />
 
                                 <div>
-                                    <h4 className="mb-0">A1</h4>
+                                    <a href="#/Kambaz/Courses/1234/Assignments/123"
+                                        className="wd-assignment-link text-decoration-none text-black" >
+                                        A1
+                                    </a>
                                     <div className="d-flex">
                                         <p className="text-danger mb-0">Multiple Modules </p>
                                         <p className="mb-0 ms-2">| <strong>Not available until:</strong> May 6 at 12:00am | </p>
@@ -58,7 +61,10 @@ export default function Assignments() {
                             <ListGroup.Item className="wd-lesson p-3 d-flex ps-1">
                                 <BsGripVertical className="me-2 fs-3" />
                                 <div>
-                                    <h4 className="mb-0">A1</h4>
+                                    <a href="#/Kambaz/Courses/1234/Assignments/124"
+                                        className="wd-assignment-link text-decoration-none text-black">
+                                        A2
+                                    </a>
                                     <div className="d-flex">
                                         <p className="text-danger mb-0">Multiple Modules </p>
                                         <p className="mb-0 ms-2">| <strong>Not available until:</strong> May 13 at 12:00am | </p>
@@ -72,7 +78,10 @@ export default function Assignments() {
                             <ListGroup.Item className="wd-lesson p-3 d-flex ps-1">
                                 <BsGripVertical className="me-2 fs-3" />
                                 <div>
-                                    <h4 className="mb-0">A1</h4>
+                                    <a href="#/Kambaz/Courses/1234/Assignments/125"
+                                        className="wd-assignment-link text-decoration-none text-black">
+                                        A3
+                                    </a>
                                     <div className="d-flex">
                                         <p className="text-danger mb-0">Multiple Modules </p>
                                         <p className="mb-0 ms-2">| <strong>Not available until:</strong> May 20 at 12:00am | </p>
