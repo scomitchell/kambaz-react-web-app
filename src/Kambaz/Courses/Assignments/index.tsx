@@ -32,6 +32,7 @@ export default function Assignments() {
                     </Button>
                 </div>
             </div>
+
             <div id="wd-assignments-list">
                 <ListGroup className="rounded-0" id="wd-modules">
                     <ListGroup.Item className="wd-assignment p-0 mb-5 fs-5 border-gray">
@@ -46,25 +47,11 @@ export default function Assignments() {
                                     <h4 className="mb-0">A1</h4>
                                     <div className="d-flex">
                                         <p className="text-danger mb-0">Multiple Modules </p>
-                                        <p className="ms-2">| <strong>Not available until:</strong> May 6 at 12:00am | </p>
+                                        <p className="mb-0 ms-2">| <strong>Not available until:</strong> May 6 at 12:00am | </p>
                                     </div>
                                     <div className="d-flex">
-                                        <p><strong>Due</strong> May 13 at 11:59pm</p>
-                                        <p className="ms-2">| 100pts</p>
-                                    </div>
-                                </div>
-                            </ListGroup.Item>
-                            <ListGroup.Item className="wd-lesson p-3 d-flex ps-1">
-                                <BsGripVertical className="me-2 fs-3" />
-                                <div>
-                                    <h4 className="mb-0">A1</h4>
-                                    <div className="d-flex">
-                                        <p className="text-danger mb-0">Multiple Modules </p>
-                                        <p className="ms-2">| <strong>Not available until:</strong> May 13 at 12:00am | </p>
-                                    </div>
-                                    <div className="d-flex">
-                                        <p><strong>Due</strong> May 20 at 11:59pm</p>
-                                        <p className="ms-2">| 100pts</p>
+                                        <p className="mb-0"><strong>Due</strong> May 13 at 11:59pm</p>
+                                        <p className="mb-0 ms-2">| 100pts</p>
                                     </div>
                                 </div>
                             </ListGroup.Item>
@@ -74,11 +61,25 @@ export default function Assignments() {
                                     <h4 className="mb-0">A1</h4>
                                     <div className="d-flex">
                                         <p className="text-danger mb-0">Multiple Modules </p>
-                                        <p className="ms-2">| <strong>Not available until:</strong> May 20 at 12:00am | </p>
+                                        <p className="mb-0 ms-2">| <strong>Not available until:</strong> May 13 at 12:00am | </p>
                                     </div>
                                     <div className="d-flex">
-                                        <p><strong>Due</strong> May 27 at 11:59pm</p>
-                                        <p className="ms-2">| 100pts</p>
+                                        <p className="mb-0"><strong>Due</strong> May 20 at 11:59pm</p>
+                                        <p className="mb-0 ms-2">| 100pts</p>
+                                    </div>
+                                </div>
+                            </ListGroup.Item>
+                            <ListGroup.Item className="wd-lesson p-3 d-flex ps-1">
+                                <BsGripVertical className="me-2 fs-3" />
+                                <div>
+                                    <h4 className="mb-0">A1</h4>
+                                    <div className="d-flex">
+                                        <p className="text-danger mb-0">Multiple Modules </p>
+                                        <p className="mb-0 ms-2">| <strong>Not available until:</strong> May 20 at 12:00am | </p>
+                                    </div>
+                                    <div className="d-flex">
+                                        <p className="mb-0"><strong>Due</strong> May 27 at 11:59pm</p>
+                                        <p className="ms-2 mb-0">| 100pts</p>
                                     </div>
                                 </div>
                             </ListGroup.Item>
