@@ -1,44 +1,91 @@
+import { Form, InputGroup, Button, ListGroup } from "react-bootstrap";
+import { FaSearch } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa6"
+import { BsGripVertical } from "react-icons/bs";
 export default function Assignments() {
     return (
-        <div id="wd-assignments">
-            <input placeholder="Search for Assignments"
-                id="wd-search-assignment" />
-            <button id="wd-add-assignment-group">+ Group</button>
-            <button id="wd-add-assignment">+ Assignment</button>
-            <h3 id="wd-assignments-title">
-                ASSIGNMENTS 40% of Total <button>+</button> </h3>
-            <ul id="wd-assignment-list">
-                <li className="wd-assignment-list-item">
-                    <a href="#/Kambaz/Courses/1234/Assignments/123"
-                        className="wd-assignment-link" >
-                        A1 - ENV + HTML
-                    </a>
-                    <p>
-                        Multiple Modules | <b>Not available until</b> May 6 at 12:00am | <br />
-                        <b>Due</b> May 13 at 11:59pm | 100 pts
-                    </p>
-                </li>
-                <li className="wd-assignment-list-item">
-                    <a href="#/Kambaz/Courses/1234/Assignments/124"
-                        className="wd-assignment-link" >
-                        A2 - CSS + Bootstrap
-                    </a>
-                    <p>
-                        Multiple Modules | <b>Not available until</b> May 13 at 12:00am | <br />
-                        <b>Due</b> May 20 at 11:59pm | 100pts
-                    </p>
-                </li>
-                <li className="wd-assignment-list-item">
-                    <a href="#Kambaz/Courses/1234/Assignments/125"
-                        className="wd-assignment-link" >
-                        A3 - JavaScript + React
-                    </a>
-                    <p>
-                        Multiple Modules | <b>Not available until</b> May 20 at 12:00am | <br />
-                        <b>Due</b> May 27 at 11:59pm | 100pts
-                    </p>
-                </li>
-            </ul>
+        <div id="wd-assignments" className="container-fluid">
+            <div id="wd-assignments-top-bar"
+                className="d-flex justify-content-between align-items-center">
+                <div>
+                    <InputGroup>
+                        <InputGroup.Text>
+                            <FaSearch />
+                        </InputGroup.Text>
+                        <Form.Control
+                            type="text"
+                            placeholder="Search for Assignment"
+                            aria-label="Search for Assignment"
+                            style={{ width: "250px" }}
+                        />
+                    </InputGroup>
+                </div>
+
+                <div className="d-flex gap-2">
+                    <Button variant="secondary" size="lg" id="wd-group-button">
+                        <FaPlus className="me-2" />
+                        Group
+                    </Button>
+                    <Button variant="danger" size="lg" id="wd-assignment-button">
+                        <FaPlus className="me-2" />
+                        Assignment
+                    </Button>
+                </div>
+            </div>
+            <div id="wd-assignments-list">
+                <ListGroup className="rounded-0" id="wd-modules">
+                    <ListGroup.Item className="wd-assignment p-0 mb-5 fs-5 border-gray">
+                        <div className="wd-title p-3 ps-2 bg-secondary">
+                            <BsGripVertical className="me-2 fs-3" /> Assignments
+                        </div>
+                        <ListGroup className="wd-assignments rounded-0">
+                            <ListGroup.Item className="wd-lesson p-3 d-flex ps-1">
+                                <BsGripVertical className="me-2 fs-3" />
+
+                                <div>
+                                    <h4 className="mb-0">A1</h4>
+                                    <div className="d-flex">
+                                        <p className="text-danger mb-0">Multiple Modules </p>
+                                        <p className="ms-2">| <strong>Not available until:</strong> May 6 at 12:00am | </p>
+                                    </div>
+                                    <div className="d-flex">
+                                        <p><strong>Due</strong> May 13 at 11:59pm</p>
+                                        <p className="ms-2">| 100pts</p>
+                                    </div>
+                                </div>
+                            </ListGroup.Item>
+                            <ListGroup.Item className="wd-lesson p-3 d-flex ps-1">
+                                <BsGripVertical className="me-2 fs-3" />
+                                <div>
+                                    <h4 className="mb-0">A1</h4>
+                                    <div className="d-flex">
+                                        <p className="text-danger mb-0">Multiple Modules </p>
+                                        <p className="ms-2">| <strong>Not available until:</strong> May 13 at 12:00am | </p>
+                                    </div>
+                                    <div className="d-flex">
+                                        <p><strong>Due</strong> May 20 at 11:59pm</p>
+                                        <p className="ms-2">| 100pts</p>
+                                    </div>
+                                </div>
+                            </ListGroup.Item>
+                            <ListGroup.Item className="wd-lesson p-3 d-flex ps-1">
+                                <BsGripVertical className="me-2 fs-3" />
+                                <div>
+                                    <h4 className="mb-0">A1</h4>
+                                    <div className="d-flex">
+                                        <p className="text-danger mb-0">Multiple Modules </p>
+                                        <p className="ms-2">| <strong>Not available until:</strong> May 20 at 12:00am | </p>
+                                    </div>
+                                    <div className="d-flex">
+                                        <p><strong>Due</strong> May 27 at 11:59pm</p>
+                                        <p className="ms-2">| 100pts</p>
+                                    </div>
+                                </div>
+                            </ListGroup.Item>
+                        </ListGroup>
+                    </ListGroup.Item>
+                </ListGroup>
+            </div>
         </div>
     );
 }
