@@ -1,10 +1,20 @@
-import {FormLabel, FormGroup, FormControl, FormSelect, FormCheck, Button, ListGroup } from "react-bootstrap"
+import { FormLabel, FormGroup, FormControl, FormSelect, FormCheck, Button } from "react-bootstrap"
+import { useParams } from "react-router";
+import * as db from "../../Database";
+import { Link } from "react-router";
 export default function AssignmentEditor() {
+    const { aid } = useParams();
+    const { cid } = useParams();
+    const assignments = db.assignments;
+
+    const assignment = assignments.find((assignment) => assignment._id === aid);
+    const assignmentTitle = assignment ? `${aid} - ${assignment.title}`: ""
+
     return (
         <div id="wd-assignments-editor">
             <FormGroup className="mb-3" controlId="wd-assignment-name">
                 <FormLabel>Assignment Name</FormLabel>
-                <FormControl type="text" value="A1" />
+                <FormControl type="text" value={assignmentTitle} />
             </FormGroup>
 
             <FormGroup className="mb-3" controlId="wd-assignment-description">
@@ -102,6 +112,15 @@ export default function AssignmentEditor() {
                     </div>
                 </div>
             </FormGroup>
+
+            <div className="d-flex justify-content-end">
+                <Link to={`/Kambaz/Courses/${cid}/Assignments`}>
+                    <Button className="bg-danger border-0">Save</Button>
+                </Link>
+                <Link to={`/Kambaz/Courses/${cid}/Assignments`}>
+                    <Button className="bg-secondary border-0 text-black ms-2">Cancel</Button>
+                </Link>
+            </div>
         </div>
     );
 }
