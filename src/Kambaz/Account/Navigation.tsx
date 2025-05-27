@@ -11,7 +11,7 @@ export default function AccountNavigation() {
         <div id="wd-account-navigation" className="wd list-group fs-5 rounded-0">
             {links.map((link) =>
                 <ListGroup.Item key={link.path} as={Link} to={link.path}
-                    className="text-danger border border-0"
+                    className={"list-group-item text-danger border border-0"}
                     active={pathname.includes(link.label)}>
                     {link.label}
                 </ListGroup.Item>
