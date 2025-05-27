@@ -1,13 +1,21 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom";
+import { ListGroup } from "react-bootstrap";
 export default function AccountNavigation() {
+    const { pathname } = useLocation();
+    const links = [
+        { label: "Signin", path: "/Kambaz/Account/Signin" },
+        { label: "Signup", path: "/Kambaz/Account/Signup" },
+        { label: "Profile", path: "/Kambaz/Account/Profile" },
+    ];
     return (
         <div id="wd-account-navigation" className="wd list-group fs-5 rounded-0">
-            <Link to="/Kambaz/Account/Signin" id="wd-sign-in-link"
-                className="list-group-item active border border-0"> Signin  </Link> <br />
-            <Link to="/Kambaz/Account/Signup" id="wd-sign-up-linl"
-                className="list-group-item text-danger border border-0"> Signup  </Link> <br />
-            <Link to="/Kambaz/Account/Profile" id="wd-profile-link"
-                className="list-group-item text-danger border border-0"> Profile </Link> <br />
+            {links.map((link) =>
+                <ListGroup.Item key={link.path} as={Link} to={link.path}
+                    className="text-danger border border-0"
+                    active={pathname.includes(link.label)}>
+                    {link.label}
+                </ListGroup.Item>
+            )}
         </div>
     )
 }
