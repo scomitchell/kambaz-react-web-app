@@ -11,12 +11,19 @@ export default function Dashboard() {
     const { enrollments } = db;
     const { courses } = useSelector((state: any) => state.courseReducer);
     const [course, setCourse] = useState({ name: "", description: "" });
+    const [showAll, setShowAll] = useState(false);
 
     const dispatch = useDispatch();
 
+    const handleEnrollments = () => {
+        setShowAll(!showAll);
+    }
+
     return (
         <div id="wd-dashboard">
-            <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
+            <h1 id="wd-dashboard-title">Dashboard
+                <Button className="btn-primary float-end" onClick={handleEnrollments}>Enrollments</Button>
+            </h1> <hr />
             <FacultyRoute>
                 <h5>New Course
                     <Button className="btn btn-primary float-end"
@@ -32,14 +39,15 @@ export default function Dashboard() {
                     onChange={(e) => setCourse({ ...course, description: e.target.value })} />
                 <hr />
             </FacultyRoute>
+
             <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2> <hr />
             <div id="wd-dashboard-courses">
                 <Row xs={1} md={5} className="g-4">
-                    {courses.filter((course: any) =>
+                    {(showAll ? courses : courses.filter((course: any) =>
                         enrollments.some((enrollment) =>
-                            enrollment.user === currentUser._id &&
+                            (enrollment.user === currentUser._id) &&
                             enrollment.course === course._id)
-                    ).map((course: any) => (
+                    )).map((course: any) => (
                         <Col className="wd-dashboard-course" style={{ width: "300px" }}>
                             <Card>
                                 <Link to={`/Kambaz/Courses/${course._id}/Home`}
