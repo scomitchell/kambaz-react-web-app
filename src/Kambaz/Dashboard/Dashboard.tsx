@@ -10,27 +10,9 @@ export default function Dashboard() {
     const { currentUser } = useSelector((state: any) => state.accountReducer);
     const { enrollments } = db;
     const { courses } = useSelector((state: any) => state.courseReducer);
+    const [course, setCourse] = useState({ name: "", description: "" });
+
     const dispatch = useDispatch();
-
-    const [course, setCourse] = useState<{ _id?: string; name: string; description?: string }>({
-        name: "",
-        description: "",
-    });
-
-
-    const handleAddNew = () => {
-        dispatch(addNewCourse(course));
-        setCourse({ name: "", description: "" });
-    };
-
-    const handleUpdate = () => {
-        dispatch(updateCourse(course));
-        setCourse({ name: "", description: "" });
-    };
-
-    const handleEditClick = (c: any) => {
-        setCourse(c);
-    };
 
     return (
         <div id="wd-dashboard">
@@ -39,10 +21,10 @@ export default function Dashboard() {
                 <h5>New Course
                     <Button className="btn btn-primary float-end"
                         id="wd-add-new-course-click"
-                        onClick={handleAddNew} > Add </Button>
+                        onClick={() => dispatch(addNewCourse(course))} > Add </Button>
                     <Button className="btn btn-warning float-end me-2"
                         id="wd-update-course-click"
-                        onClick={handleUpdate}> Update </Button>
+                        onClick={() => dispatch(updateCourse(course))}> Update </Button>
                 </h5><br />
                 <FormControl value={course.name} className="mb-2"
                     onChange={(e) => setCourse({ ...course, name: e.target.value })} />
@@ -71,18 +53,17 @@ export default function Dashboard() {
                                         <Button variant="primary"> Go </Button>
 
                                         <FacultyRoute>
-                                            <Button onClick={(e) => {
-                                                e.preventDefault();
+                                            <Button onClick={(event) => {
+                                                event.preventDefault();
                                                 dispatch(deleteCourse(course._id));
-                                            }}
-                                                className="btn btn-danger float-end"
+                                            }} className="btn btn-danger float-end"
                                                 id="wd-delete-course-click">
                                                 Delete
                                             </Button>
                                             <Button id="wd-edit-course-click"
-                                                onClick={(e) => {
-                                                    e.preventDefault();
-                                                    handleEditClick(course);
+                                                onClick={(event) => {
+                                                    event.preventDefault();
+                                                    setCourse(course);
                                                 }}
                                                 className="btn btn-warning me-2 float-end" >
                                                 Edit
