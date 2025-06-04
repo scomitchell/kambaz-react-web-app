@@ -33,8 +33,11 @@ import Highlight from "./Highlight";
 import AddPathParameters from "./AddPathParameters";
 import PathParameters from "./PathParameters";
 import { Container } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { ListGroup } from "react-bootstrap";
 export default function Lab3() {
     console.log("Hello world!");
+    const { todos } = useSelector((state: any) => state.todosReducer);
     return (
         <Container>
             <h2>Lab 3</h2>
@@ -61,6 +64,14 @@ export default function Lab3() {
             <House />
             <TodoItem />
             <TodoList />
+            <ListGroup>
+                {todos.map((todo: any) => (
+                    <ListGroup.Item key={todo.id}>
+                        {todo.title}
+                    </ListGroup.Item>
+                ))}
+            </ListGroup>
+            <hr />
             <Spreading />
             <Destructing />
             <FunctionDestructing />

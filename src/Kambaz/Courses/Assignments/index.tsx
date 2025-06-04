@@ -1,12 +1,26 @@
 import { Form, InputGroup, Button, ListGroup } from "react-bootstrap";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaTrash } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6"
 import { BsGripVertical } from "react-icons/bs";
 import { useParams } from "react-router";
 import * as db from "../../Database";
+import FacultyRoute from "../../Account/FacultyRoute";
+import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteAssignment } from "./assignmentReducer";
+
 export default function Assignments() {
     const { cid } = useParams();
-    const assignments = db.assignments;
+    const navigate = useNavigate();
+    const { assignments } = useSelector((state: any) => state.assignmentReducer);
+    const dispatch = useDispatch();
+
+    const createAssignment = () => {
+        const newId = uuidv4();
+        navigate(`/Kambaz/Courses/${cid}/Assignments/${newId}`);
+    }
+
     return (
         <div id="wd-assignments" className="container-fluid">
             <div id="wd-assignments-top-bar"
@@ -25,16 +39,18 @@ export default function Assignments() {
                     </InputGroup>
                 </div>
 
-                <div className="d-flex gap-2">
-                    <Button variant="secondary" size="lg" id="wd-group-button">
-                        <FaPlus className="me-2" />
-                        Group
-                    </Button>
-                    <Button variant="danger" size="lg" id="wd-assignment-button">
-                        <FaPlus className="me-2" />
-                        Assignment
-                    </Button>
-                </div>
+                <FacultyRoute>
+                    <div className="d-flex gap-2">
+                        <Button variant="secondary" size="lg" id="wd-group-button">
+                            <FaPlus className="me-2" />
+                            Group
+                        </Button>
+                        <Button variant="danger" size="lg" id="wd-assignment-button" onClick={createAssignment}>
+                            <FaPlus className="me-2" />
+                            Assignment
+                        </Button>
+                    </div>
+                </FacultyRoute>
             </div>
 
             <div id="wd-assignments-list">
@@ -68,6 +84,12 @@ export default function Assignments() {
                                                 <p className="ms-2 mb-0">| 100pts</p>
                                             </div>
                                         </div>
+                                        <FaTrash className="text-danger" onClick={() => {
+                                            const confirmDelete = window.confirm("Are you sure you want to delete this assignment?");
+                                            if (confirmDelete) {
+                                                dispatch(deleteAssignment(assignment._id));
+                                            }
+                                        }}/>
                                     </ListGroup.Item>
                                 )}
                         </ListGroup>

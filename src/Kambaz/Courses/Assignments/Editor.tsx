@@ -2,25 +2,57 @@ import { FormLabel, FormGroup, FormControl, FormSelect, FormCheck, Button } from
 import { useParams } from "react-router";
 import * as db from "../../Database";
 import { Link } from "react-router";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom"
+import { addAssignment, updateAssignment } from "./assignmentReducer";
+
 export default function AssignmentEditor() {
     const { aid } = useParams();
     const { cid } = useParams();
-    const assignments = db.assignments;
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const assignment = assignments.find((assignment) => assignment._id === aid);
-    const assignmentTitle = assignment ? `${aid} - ${assignment.title}`: ""
+    const { assignments } = useSelector((state: any) => state.assignmentReducer);
+    const [title, setTitle] = useState("");
+
+    const handleSave = () => {
+        const newAssignment = {
+            _id: aid,
+            title: title,
+            course: cid,
+        };
+
+        // If assignment with this id exists, update it, else add new
+        const exists = assignments.some(a => a._id === aid);
+
+        if (exists) {
+            dispatch(updateAssignment(newAssignment));
+        } else {
+            dispatch(addAssignment(newAssignment));
+        }
+
+        navigate(`/Kambaz/Courses/${cid}/Assignments`);
+    };
+
+    useEffect(() => {
+        const assignment = assignments.find((a) => a._id === aid);
+        setTitle(assignment ? `${aid} - ${assignment.title}` : "");
+    }, [aid, assignments]);
 
     return (
         <div id="wd-assignments-editor">
             <FormGroup className="mb-3" controlId="wd-assignment-name">
                 <FormLabel>Assignment Name</FormLabel>
-                <FormControl type="text" value={assignmentTitle} />
+                <FormControl type="text"
+                    onChange={(e) => setTitle(e.target.value)}
+                    value={title} />
             </FormGroup>
 
             <FormGroup className="mb-3" controlId="wd-assignment-description">
                 <FormControl
                     as="textarea"
-                    value="Description of the assignment goes here"
+                    defaultValue="Description of the assignment goes here"
                     style={{ height: '150px' }}
                     className="text-start"/>
             </FormGroup>
@@ -28,7 +60,7 @@ export default function AssignmentEditor() {
             <FormGroup className="row mb-3" controlId="wd-assignment-pts">
                 <FormLabel className="col-sm-3 col-form-label text-sm-end">Points</FormLabel>
                 <div className="col-sm-9">
-                    <FormControl className="flex-grow-1" type="text" value="100" />
+                    <FormControl className="flex-grow-1" type="text" defaultValue="100" />
                 </div>
             </FormGroup>
 
@@ -36,7 +68,7 @@ export default function AssignmentEditor() {
                 <FormLabel className="col-sm-3 col-form-label text-sm-end">Assignment Group</FormLabel>
                 <div className="col-sm-9">
                     <FormSelect>
-                        <option selected>ASSIGNMENTS</option>
+                        <option>ASSIGNMENTS</option>
                         <option>QUIZZES</option>
                         <option>EXAMS</option>
                         <option>PROJECT</option>
@@ -98,12 +130,12 @@ export default function AssignmentEditor() {
 
                     <FormControl className="mb-3" value="Everyone" />
                     <FormLabel className="ms-2 fw-bold">Due</FormLabel>
-                    <FormControl className="mb-3" type="date" value="2025-05-20" />
+                    <FormControl className="mb-3" type="date" defaultValue="2025-05-20" />
 
                     <div className="d-flex gap-3">
                         <div id="wd-available-date">
                             <FormLabel className="ms-2 mb-1">Available From</FormLabel>
-                            <FormControl className="mb-3" type="date" value="2025-05-13" />
+                            <FormControl className="mb-3" type="date" defaultValue="2025-05-13" />
                         </div>
                         <div id="wd-until-date">
                             <FormLabel className="ms-2 mb-1">Until</FormLabel>
@@ -115,7 +147,7 @@ export default function AssignmentEditor() {
 
             <div className="d-flex justify-content-end">
                 <Link to={`/Kambaz/Courses/${cid}/Assignments`}>
-                    <Button className="bg-danger border-0">Save</Button>
+                    <Button className="bg-danger border-0" onClick={handleSave}>Save</Button>
                 </Link>
                 <Link to={`/Kambaz/Courses/${cid}/Assignments`}>
                     <Button className="bg-secondary border-0 text-black ms-2">Cancel</Button>
