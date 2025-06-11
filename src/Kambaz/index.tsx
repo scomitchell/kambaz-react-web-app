@@ -13,10 +13,12 @@ import { useSelector } from "react-redux";
 
 export default function Kambaz() {
     const [courses, setCourses] = useState<any[]>([]);
+    const [course, setCourse] = useState({ _id: 1 });
     const { currentUser } = useSelector((state: any) => state.accountReducer);
+
     const fetchCourses = async () => {
         try {
-            const courses = await userClient.findMyCourses();
+            const courses = await userClient.findMyCourses(currentUser._id);
             setCourses(courses);
         } catch (error) {
             console.error(error);

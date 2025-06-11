@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Row, Col, Card, Button, FormControl } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import FacultyRoute from "../Account/FacultyRoute";
-import { addNewCourse, deleteCourse, updateCourse, enrollInCourse, unenrollFromCourse, setEnrollments } from "../Courses/courseReducer"
+import { addNewCourse, deleteCourse, updateCourse, setEnrollments } from "../Courses/courseReducer"
 import { useState, useEffect } from "react"
 import EnrolledRoute from "../Courses/EnrolledRoute"
 import * as userClient from "../Account/client"
