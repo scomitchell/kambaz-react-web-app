@@ -1,11 +1,11 @@
 import { FormLabel, FormGroup, FormControl, FormSelect, FormCheck, Button } from "react-bootstrap"
 import { useParams } from "react-router";
-import * as db from "../../Database";
 import { Link } from "react-router";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom"
 import { addAssignment, updateAssignment } from "./assignmentReducer";
+import * as assignmentsClient from "./client";
 
 export default function AssignmentEditor() {
     const { aid } = useParams();
@@ -16,19 +16,20 @@ export default function AssignmentEditor() {
     const { assignments } = useSelector((state: any) => state.assignmentReducer);
     const [title, setTitle] = useState("");
 
-    const handleSave = () => {
+    const handleSave = async () => {
         const newAssignment = {
             _id: aid,
             title: title,
             course: cid,
         };
 
-        // If assignment with this id exists, update it, else add new
-        const exists = assignments.some(a => a._id === aid);
+        const exists = assignments.some((a: any) => a._id === aid);
 
         if (exists) {
+            await assignmentsClient.updateAssignment(cid as string, aid as string, newAssignment);
             dispatch(updateAssignment(newAssignment));
         } else {
+            await assignmentsClient.createAssignment(cid as string, newAssignment);
             dispatch(addAssignment(newAssignment));
         }
 

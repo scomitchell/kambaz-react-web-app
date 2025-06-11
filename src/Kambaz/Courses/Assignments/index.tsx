@@ -3,12 +3,13 @@ import { FaSearch, FaTrash } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6"
 import { BsGripVertical } from "react-icons/bs";
 import { useParams } from "react-router";
-import * as db from "../../Database";
 import FacultyRoute from "../../Account/FacultyRoute";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteAssignment } from "./assignmentReducer";
+import { deleteAssignment, setAssignments } from "./assignmentReducer";
+import * as assignmentsClient from "./client";
 
 export default function Assignments() {
     const { cid } = useParams();
@@ -20,6 +21,20 @@ export default function Assignments() {
         const newId = uuidv4();
         navigate(`/Kambaz/Courses/${cid}/Assignments/${newId}`);
     }
+
+    const fetchAssignments = async () => {
+        const assignments = await assignmentsClient.findAssignmentsForCourse(cid as string);
+        dispatch(setAssignments(assignments));
+    }
+
+    const handleDeleteAssignment = async (assignmentId: string) => {
+        await assignmentsClient.deleteAssignment(cid as string, assignmentId);
+        dispatch(deleteAssignment(assignmentId));
+    };
+
+    useEffect(() => {
+        fetchAssignments();
+    }, []);
 
     return (
         <div id="wd-assignments" className="container-fluid">
@@ -84,12 +99,12 @@ export default function Assignments() {
                                                 <p className="ms-2 mb-0">| 100pts</p>
                                             </div>
                                         </div>
-                                        <FaTrash className="text-danger" onClick={() => {
+                                        <FaTrash className="text-danger float-end" onClick={() => {
                                             const confirmDelete = window.confirm("Are you sure you want to delete this assignment?");
                                             if (confirmDelete) {
-                                                dispatch(deleteAssignment(assignment._id));
+                                                handleDeleteAssignment(assignment._id);
                                             }
-                                        }}/>
+                                        }} />
                                     </ListGroup.Item>
                                 )}
                         </ListGroup>

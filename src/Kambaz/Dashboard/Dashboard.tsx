@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 import { Row, Col, Card, Button, FormControl } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import FacultyRoute from "../Account/FacultyRoute";
-import { addNewCourse, deleteCourse, updateCourse, enrollInCourse, unenrollFromCourse } from "../Courses/courseReducer"
-import { useState } from "react"
+import { addNewCourse, deleteCourse, updateCourse, enrollInCourse, unenrollFromCourse, setEnrollments } from "../Courses/courseReducer"
+import { useState, useEffect } from "react"
 import EnrolledRoute from "../Courses/EnrolledRoute"
-export default function Dashboard() {
+import * as userClient from "../Account/client"
+export default function Dashboard({ courses }: { courses: any }) {
 
     const { currentUser } = useSelector((state: any) => state.accountReducer);
     const { enrollments } = useSelector((state: any) => state.courseReducer);
-    const { courses } = useSelector((state: any) => state.courseReducer);
     const [course, setCourse] = useState({ name: "", description: "" });
     const [showAll, setShowAll] = useState(false);
 
@@ -19,6 +19,26 @@ export default function Dashboard() {
         setShowAll(!showAll);
     }
 
+    const handleEnrollUser = async (courseId: string) => {
+        await userClient.enrollUserInCourse(courseId, currentUser._id);
+
+        await loadEnrollments();
+    };
+
+    const handleUnenrollUser = async (courseId: string) => {
+        await userClient.unenrollUserFromCourse(courseId, currentUser._id);
+
+        await loadEnrollments();
+    };
+
+    const loadEnrollments = async () => {
+        const enrollments = await userClient.findAllEnrollments();
+        dispatch(setEnrollments(enrollments));
+    }
+
+    useEffect(() => {
+        loadEnrollments();
+    }, []);
 
     return (
         <div id="wd-dashboard">
@@ -44,14 +64,9 @@ export default function Dashboard() {
             <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2> <hr />
             <div id="wd-dashboard-courses">
                 <Row xs={1} md={5} className="g-4">
-                    {(showAll ? courses : courses.filter((course: any) =>
-                        enrollments.some((enrollment: any) =>
-                            (enrollment.user === currentUser._id) &&
-                            enrollment.course === course._id)
-                    )).map((course: any) => {
+                    {courses.map((course: any) => {
                         const enrolled = enrollments.some((enrollment: any) =>
-                            enrollment.user === currentUser._id &&
-                            enrollment.course === course._id
+                            enrollment.user === currentUser._id && enrollment.course === course._id
                         );
 
                         return (
@@ -73,7 +88,7 @@ export default function Dashboard() {
                                             {enrolled ?
                                                 <Button onClick={(event) => {
                                                     event.preventDefault()
-                                                    dispatch(unenrollFromCourse({ userId: currentUser._id, courseId: course._id }))
+                                                    {handleUnenrollUser(course._id)}
                                                 }}
                                                     className="btn btn-danger float-end"
                                                     id="wd-unenroll-course-click">
@@ -81,7 +96,7 @@ export default function Dashboard() {
                                                 </Button> :
                                                 <Button onClick={(event) => {
                                                     event.preventDefault();
-                                                    dispatch(enrollInCourse({ userId: currentUser._id, courseId: course._id }))
+                                                    {handleEnrollUser(course._id)}
                                                 }}
                                                     className="btn btn-success float-end"
                                                     id="wd-enroll-course-click">
