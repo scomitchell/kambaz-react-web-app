@@ -3,6 +3,7 @@ import { ListGroup } from "react-bootstrap";
 import { useSelector } from "react-redux"
 export default function AccountNavigation() {
     const { pathname } = useLocation();
+    const active = (path: string) => (pathname.includes(path) ? "active" : "");
     const { currentUser } = useSelector((state: any) => state.accountReducer);
     const links = currentUser ? [
         { label: "Profile", path: "/Kambaz/Account/Profile" }] :
@@ -17,6 +18,12 @@ export default function AccountNavigation() {
                     {link.label}
                 </ListGroup.Item>
             )}
+            {currentUser && currentUser.role === "ADMIN" && (
+                <ListGroup.Item key="/Kambaz/Account/Users" as={Link} to="/Kambaz/Account/Users"
+                    className={`list-group-item text-danger border border-0
+                    ${active("Users")}`}>
+                    Users
+                </ListGroup.Item>)}
         </div>
     )
 }
