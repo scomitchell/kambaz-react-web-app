@@ -1,4 +1,4 @@
-# NUCourse (frontend)
+# NUCourse (Frontend)
 View Live App: https://nucourse-react-web-app.netlify.app/#/NUCourse
 
 **NUCourse** is a platform developed with React + VITE which allows Northeastern students to rate and review their Northeastern courses.
