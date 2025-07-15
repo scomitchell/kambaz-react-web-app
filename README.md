@@ -13,8 +13,8 @@ View Live App: https://nucourse-react-web-app.netlify.app/#/NUCourse
 - **Admin Tools** - Admin users have acess to a Manage Users tab to manage all users of the platform.
 
 ## Tech Stack
-**Frontend Framework** - React (with VITE)
-**Styling** - CSS, Boostrap Utility Classes, React-Bootstrap.
-**Routing** - React Router
-**State Management** - Redux
+- **Frontend Framework** - React (with VITE)
+- **Styling** - CSS, Boostrap Utility Classes, React-Bootstrap.
+- **Routing** - React Router
+- **State Management** - Redux
 ```
